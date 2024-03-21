@@ -1,31 +1,34 @@
 <template>
-  <div id="reg">
+  <div class="form-auth__wrapper" id="reg">
     <div id="alert" v-if="alert">{{ alert }}</div>
 
     <form @submit.prevent="signupWithPassword">
-      <label>
-        Email address
-        <input type="email" v-model="email" />
-      </label>
-      <label>
+      <div class="form__text">
+        Email
+        <input class="form-auth__input" type="email" v-model="email" />
+      </div>
+      <div class="form__text">
         Name
-        <input type="text" v-model="name" />
-      </label>
-      <label>
+        <input class="form-auth__input" type="text" v-model="name" />
+      </div>
+      <div class="form__text">
         Password
-        <input type="password" v-model="password" />
-      </label>
-      <label>
+        <input class="form-auth__input" type="password" v-model="password" />
+      </div>
+      <div class="form__text">
         Verify password
-        <input type="password" v-model="passwordVerify" />
-      </label>
-      <button type="submit">Sign up</button>
+        <input class="form-auth__input" type="password" v-model="passwordVerify" />
+      </div>
+      <div class="button-center">
+        <button class="button-auth" type="submit">Sign up</button>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
 import { UserApi } from '@/api/User'
+import './styles/Auth.css'
 
 export default {
   data () {
@@ -56,6 +59,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

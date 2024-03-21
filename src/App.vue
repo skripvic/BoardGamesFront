@@ -1,25 +1,20 @@
 <template>
+  <mainHeader/>
+  <router-link to="/game">
+    <button>Посмотреть игры</button>
+  </router-link>
   <reg/>
 </template>
 
 <script>
 import reg from './components/registrationForm.vue'
+import mainHeader from './components/mainHeader.vue'
 
 export default {
   name: 'App',
   components: {
-    reg
+    reg,
+    mainHeader
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>./components/registrationForm.vue

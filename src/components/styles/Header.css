@@ -1,0 +1,21 @@
+.header{
+    display: flex;
+    /* justify-content: space-around; */
+    /* margin: 1.5rem auto 0.7rem; */
+    width: 100%;
+    /* max-width: 55rem; */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10px;
+    min-height: 5.5rem;
+    background-color: rgb(236, 216, 255);
+}
+
+.header__title{
+    font-size: 1.7rem;
+    font-family: Verdana;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1.3rem;
+}

@@ -1,20 +1,15 @@
-
 <template>
-  <div class="gameList">
-    <p>Список игр</p>
-    <ul>
-    <li v-for="game in gameList" :key="game.id">
-      {{ game.alias }} {{ game.titleRussian }} {{ game.titleEnglish }}
-    </li>
-    </ul>
-  </div>
+  <header class="header">
+      <router-link class="header__title" to="/home">Хроники настолок</router-link>
+  </header>
 </template>
 
 <script>
 import { GameApi } from '@/api/Game'
-import './styles/GameList.css'
+import './styles/Header.css'
 
 export default {
+  name: 'mainHeader',
   data () {
     return {
       gameList: []
