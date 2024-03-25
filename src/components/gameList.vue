@@ -1,10 +1,11 @@
 
 <template>
-  <div class="gameList">
+  <div class="list-gameList">
     <p>Список игр</p>
-    <ul>
-    <li v-for="game in gameList" :key="game.id">
-      {{ game.alias }} {{ game.titleRussian }} {{ game.titleEnglish }}
+    <ul class = "elements">
+    <li class = "element" v-for="game in gameList" :key="game.id">
+      <router-link :to="{ name: 'game', params: { id: game.id }}">{{ game.titleRussian }}</router-link>
+      {{ game.titleEnglish }}
     </li>
     </ul>
   </div>
@@ -15,6 +16,7 @@ import { GameApi } from '@/api/Game'
 import './styles/GameList.css'
 
 export default {
+  name: 'gameList',
   data () {
     return {
       gameList: []

@@ -1,26 +1,18 @@
 <template>
   <div class="form-auth__wrapper" id="reg">
     <div id="alert" v-if="alert">{{ alert }}</div>
-    <p class="main-text">Регистрация</p>
-    <form @submit.prevent="register">
+    <p class="main-text">Войти в систему</p>
+    <form @submit.prevent="signin">
       <div class="form__text">
         Email
         <input class="form-auth__input" type="email" v-model="email" />
       </div>
       <div class="form__text">
-        Name
-        <input class="form-auth__input" type="text" v-model="name" />
-      </div>
-      <div class="form__text">
         Password
         <input class="form-auth__input" type="password" v-model="password" />
       </div>
-      <div class="form__text">
-        Verify password
-        <input class="form-auth__input" type="password" v-model="passwordVerify" />
-      </div>
       <div class="button-center">
-        <button class="button-auth" type="submit">Регистрация</button>
+        <button class="button-auth" type="submit">Войти</button>
       </div>
     </form>
   </div>
@@ -34,27 +26,18 @@ export default {
   data () {
     return {
       email: '',
-      name: '',
       password: '',
-      passwordVerify: '',
       alert: ''
     }
   },
   methods: {
-    register () {
+    signin () {
       this.alert = ''
-      if (this.password !== this.passwordVerify) {
-        this.alert = 'Passwords must match'
-        return
-      }
       const userApi = new UserApi()
-      this.userToken = userApi.registration({
+      this.userToken = userApi.signIn({
         email: this.email,
-        userName: this.name,
         password: this.password
-      },
-      this.$router.push('/home')
-      ).catch((error) => {
+      }).catch((error) => {
         this.alert = error.message
       })
     }

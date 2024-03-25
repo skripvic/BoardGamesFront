@@ -8,8 +8,17 @@
 }
 
 .form-auth__wrapper {
-    margin: 10% 35%;
+    margin: 5% 35%;
     box-sizing: border-box;
+}
+
+.main-text{
+    text-align: center;
+    font-size: 1.7rem;
+    font-family: Verdana;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 4rem;
 }
 
 .form-auth__input{
