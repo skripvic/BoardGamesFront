@@ -1,16 +1,18 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'
 
-import { useAuthStore, useAlertStore } from '@/stores';
-import authRoutes from './auth.routes';
-import gameRoutes from './game.routes';
+import authRoutes from './auth.routes.js'
+import gameRoutes from './game.routes.js'
+import mainRoutes from './main.routes.js'
+import collectionRoutes from './collection.routes.js'
 
 export const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    linkActiveClass: 'active',
-    routes: [
-        { ...authRoutes },
-        { ...gameRoutes },
-        // catch all redirect to home page
-        { path: '/:pathMatch(.*)*', redirect: '/' }
-    ]
-});
+  history: createWebHistory(),
+  linkActiveClass: 'active',
+  routes: [
+    ...mainRoutes.routes,
+    ...authRoutes.routes,
+    ...gameRoutes.routes,
+    ...collectionRoutes.routes,
+    { path: '/:pathMatch(.*)*', redirect: '/home' }
+  ]
+})

@@ -2,8 +2,8 @@
 <template>
   <div class="list-gameList">
     <p>Список игр</p>
-    <ul class = "elements">
-    <li class = "element" v-for="game in gameList" :key="game.id">
+    <ul class = "elements-gamelist">
+    <li class = "element-gamelist" v-for="game in gameList" :key="game.id">
       <router-link :to="{ name: 'game', params: { id: game.id }}">{{ game.titleRussian }}</router-link>
       {{ game.titleEnglish }}
     </li>

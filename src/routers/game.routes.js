@@ -1,10 +1,9 @@
-import gameList from './components/gameList.vue'
-import gameInfo from './components/gameInfo.vue'
+import gameList from '@/components/gameList.vue'
+import gameInfo from '@/components/gameInfo.vue'
 
 export default {
-    path: '/game',
-    children: [
-        { path: 'list', component: gameList },
-        { path: ':id', component: gameInfo },    
-    ]
-};
+  routes: [
+    { path: '/game/list', component: gameList },
+    { path: '/game/:id', name: 'game', component: gameInfo }
+  ]
+}

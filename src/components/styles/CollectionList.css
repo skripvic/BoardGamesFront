@@ -1,19 +1,15 @@
-.elements-gamelist{
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
+.elements-collectionlist{
     margin: 0 auto 2.2rem;
     max-width: 57rem; 
     padding: 0 1.25rem;
 }
 
-.element-gamelist {
+.element-collectionlist {
     list-style-type: none;
-    flex: 0 0 calc(50% - 0.625rem); 
-    max-width: calc(50% - 0.625rem);
+    padding: 10px;
 }
 
-.list-gameList{
+.list-collectionList{
     text-align: center;
     font-size: 1.3rem;
     font-family: Verdana;

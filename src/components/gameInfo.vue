@@ -17,7 +17,6 @@ export default {
   name: 'gameInfo',
   data () {
     return {
-      isVisible: false,
       gameInfo: ''
     }
   },

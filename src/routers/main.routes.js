@@ -1,6 +1,7 @@
-import mainPage from './components/mainPage.vue'
+import mainPage from '@/components/mainPage.vue'
 
 export default {
-    path: '/home', 
-    component: mainPage
-};
+  routes: [
+    { path: '/home', component: mainPage }
+  ]
+}

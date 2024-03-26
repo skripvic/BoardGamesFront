@@ -22,6 +22,26 @@ export class CollectionApi {
     return this._getResponseData(response)
   }
 
+  async getCollectionList (userId) {
+    const response = await fetch(`${this._baseUrl}/Collection/getCollectionList/` + userId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    return this._getResponseData(response)
+  }
+
+  async getGamesInCollectionList (collectionId) {
+    const response = await fetch(`${this._baseUrl}/Collection/getGamesInCollectionList/` + collectionId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    return this._getResponseData(response)
+  }
+
   async createCollection (newCollection) {
     const response = await fetch(`${this._baseUrl}/Collection/createCollection`, {
       method: 'POST',
@@ -33,7 +53,7 @@ export class CollectionApi {
     return this._getResponseData(response)
   }
 
-  async updateCollection(updateCollection) {
+  async updateCollection (updateCollection) {
     const response = await fetch(`${this._baseUrl}/Collection/updateCollection`, {
       method: 'PATCH',
       headers: {
