@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-      <router-link class="header__title" to="/home">Хроники настолок</router-link>
+      <router-link class="header_title" to="/home">Хроники настолок</router-link>
   </header>
 </template>
 

@@ -1,12 +1,15 @@
 <template>
   <div class="list-collectionList">
-    <p>Ваши коллекции</p>
+    <p class="main-text-collection">Ваши коллекции</p>
     <p>Тут стоит заглушка, пока только конкретный юзер</p>
     <ul class = "elements-collectionlist">
       <li class = "element-collectionlist" v-for="collection in collectionList" :key="collection.id">
-          <router-link :to="{ name: 'collection', params: { id: collection.id }}">{{ collection.name }}</router-link>
+          <router-link class="element-collectionlist-router-link" :to="{ name: 'collection', params: { id: collection.id }}">{{ collection.name }}</router-link>
       </li>
     </ul>
+  </div>
+  <div class="button-center-collection">
+    <button class="button-collection-create" @click="$router.push('/collection/add')">Добавить коллекцию</button>
   </div>
 </template>
 

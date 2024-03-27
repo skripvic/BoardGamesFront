@@ -1,17 +1,48 @@
+
+
 .elements-collectionlist{
     margin: 0 auto 2.2rem;
     max-width: 57rem; 
     padding: 0 1.25rem;
 }
 
+.main-text-collection{
+    text-align: center;
+    font-size: 1.7rem;
+    font-family: Verdana;
+    color: #000;
+    font-weight: 600;
+}
+
 .element-collectionlist {
     list-style-type: none;
     padding: 10px;
+    color: rgb(157, 82, 201);
 }
 
 .list-collectionList{
-    text-align: center;
     font-size: 1.3rem;
     font-family: Verdana;
-    margin-top: 5rem;
+    margin: 5rem auto 0;
+    max-width: 600px;
+}
+
+.element-collectionlist-router-link {
+    color: rgb(157, 82, 201);
+  }
+
+.button-collection-create{
+    background-color: #d128fc;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button-center-collection {
+    text-align: center;
 }

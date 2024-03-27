@@ -37,6 +37,8 @@ export default {
       this.userToken = userApi.signIn({
         email: this.email,
         password: this.password
+      }).then(() => {
+        this.$router.push('/home')
       }).catch((error) => {
         this.alert = error.message
       })

@@ -1,0 +1,51 @@
+
+.form_collection-wrapper {
+    margin: 5% 35%;
+    box-sizing: border-box;
+}
+
+.main-text-collection{
+    text-align: center;
+    font-size: 1.7rem;
+    font-family: Verdana;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 4rem;
+}
+
+.form_collection-input{
+    display: flex;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.059rem;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 1.875rem;
+    margin-top: 0.5rem;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: transparent;
+}
+
+.button-collection-create{
+    background-color: #d128fc;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.form_collection-text{
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: Verdana;
+}
+
+.button-center-collection {
+    text-align: center;
+}

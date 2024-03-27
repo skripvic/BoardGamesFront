@@ -52,9 +52,9 @@ export default {
         email: this.email,
         userName: this.name,
         password: this.password
-      },
-      this.$router.push('/home')
-      ).catch((error) => {
+      }).then(() => {
+        this.$router.push('/home')
+      }).catch((error) => {
         this.alert = error.message
       })
     }

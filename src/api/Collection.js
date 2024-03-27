@@ -42,6 +42,16 @@ export class CollectionApi {
     return this._getResponseData(response)
   }
 
+  async deleteGameFromCollection (gameInfo) {
+    await fetch(`${this._baseUrl}/Collection/deleteGameFromCollection`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(gameInfo)
+    })
+  }
+
   async createCollection (newCollection) {
     const response = await fetch(`${this._baseUrl}/Collection/createCollection`, {
       method: 'POST',
@@ -65,12 +75,12 @@ export class CollectionApi {
   }
 
   async deleteCollection (id) {
-    const response = await fetch(`${this._baseUrl}/Collection/deleteCollection/` + id, {
+    await fetch(`${this._baseUrl}/Collection/deleteCollection`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(id)
     })
-    return this._getResponseData(response)
   }
 }

@@ -1,11 +1,14 @@
 <template>
-  <div class="list-gameList">
+  <div class="text_game-info">
+  <p class="list-gameList-title">Информация об игре</p>
   <p>{{ gameInfo.titleRussian }} ({{ gameInfo.year }} год)</p>
   <p>{{ gameInfo.titleEnglish }}</p>
   <p>Возраст: {{ gameInfo.ageMin }}+</p>
-  <p>{{ gameInfo.playersMin }} - {{ gameInfo.playersMax }} игроков</p>
+  <p v-if="gameInfo.playersMin == gameInfo.playersMax && gameInfo.playersMax == 1"> {{ gameInfo.playersMax }} игрок </p>
+  <p v-else-if="gameInfo.playersMin == gameInfo.playersMax && gameInfo.playersMax < 5"> {{ gameInfo.playersMax }} игрока </p>
+  <p v-else-if="gameInfo.playersMin == gameInfo.playersMax"> {{ gameInfo.playersMax }} игроков </p>
+  <p v-else>{{ gameInfo.playersMin }} - {{ gameInfo.playersMax }} игроков</p>
   <p>Время игры: {{ gameInfo.playTimeMin }} - {{ gameInfo.playTimeMax }} минут</p>
-  <p></p>
   </div>
 </template>
 

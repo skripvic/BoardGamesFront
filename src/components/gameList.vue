@@ -1,13 +1,17 @@
 
 <template>
   <div class="list-gameList">
-    <p>Список игр</p>
+    <p class = "list-gameList-title">Список игр</p>
     <ul class = "elements-gamelist">
     <li class = "element-gamelist" v-for="game in gameList" :key="game.id">
-      <router-link :to="{ name: 'game', params: { id: game.id }}">{{ game.titleRussian }}</router-link>
+      <router-link class="element-gamelist-router-link" :to="{ name: 'game', params: { id: game.id }}">{{ game.titleRussian }}</router-link>
+      <br/>
       {{ game.titleEnglish }}
     </li>
     </ul>
+  </div>
+  <div class="button-center-create-game">
+    <button class="button-create-game" @click="$router.push('/game/add')">Добавить игру</button>
   </div>
 </template>
 
