@@ -1,0 +1,29 @@
+.list-userList {
+  max-width: 600px;
+  margin: 5rem auto 0;
+  font-family: Verdana;
+}
+
+.list-userList-title {
+  font-size: 1.7rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.elements-userList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.element-userList {
+  border-bottom: 2px solid rgb(212, 245, 212);
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+.text-userInfo{
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin: 5rem auto 0;
+  font-family: Verdana;
+}

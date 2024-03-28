@@ -19,6 +19,10 @@
         <button class="button-main" @click="$router.push('/game/list')">Список игр</button>
         <br/>
         <button class="button-main" @click="$router.push('/collection/list')">Список коллекций</button>
+        <br/>
+        <button class="button-main" @click="$router.push('/user/list')">Список пользователей</button>
+        <br/>
+        <button class="button-main" @click="$router.push('/user/account')">Личный кабинет</button>
     </div>
 </template>
 

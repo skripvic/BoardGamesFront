@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import authRoutes from './auth.routes.js'
 import gameRoutes from './game.routes.js'
 import mainRoutes from './main.routes.js'
+import userRoutes from './user.routes.js'
 import collectionRoutes from './collection.routes.js'
 
 export const router = createRouter({
@@ -10,6 +11,7 @@ export const router = createRouter({
   linkActiveClass: 'active',
   routes: [
     ...mainRoutes.routes,
+    ...userRoutes.routes,
     ...authRoutes.routes,
     ...gameRoutes.routes,
     ...collectionRoutes.routes,

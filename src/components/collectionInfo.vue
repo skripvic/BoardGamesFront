@@ -9,12 +9,15 @@
             <input type="checkbox" v-model="game.selectedForDeletion" class="checkbox-delete" v-if="deletingMode">
             </li>
         </ul>
-        <p v-else>В вашей коллекции нет ни одной игры!</p>
+        <p class="text-extra" v-else>В вашей коллекции нет ни одной игры!</p>
     </div>
-    <div class="button-center-create-game">
+    <div class="button-center-create-game" v-if="!deletingMode">
+      <button class="button-create-game" @click="this.$router.push('/collection/addGame/' + this.$route.params.id)"> Добавить игру </button>
+    </div>
+    <div class="button-center-create-game" v-if="gameList.length > 0">
       <button class="button-create-game" @click="toggleDeletingMode">{{ deletingMode ? 'Завершить удаление' : 'Удалить игры' }}</button>
     </div>
-    <div class="button-center-create-game">
+    <div class="button-center-create-game" v-if="!deletingMode">
       <button class="button-create-game" @click="deleteCollection">Удалить коллекцию</button>
     </div>
 </template>
@@ -29,7 +32,8 @@ export default {
     return {
       collectionInfo: '',
       gameList: [],
-      deletingMode: false
+      deletingMode: false,
+      alert: ''
     }
   },
   async created () {
@@ -55,21 +59,26 @@ export default {
     },
     async deleteGames () {
       const selectedGames = this.gameList.filter(game => game.selectedForDeletion).map(game => game.id)
-      console.log('Выбранные игры для удаления:', selectedGames)
       const collectionApi = new CollectionApi()
       for (const game of selectedGames) {
-        console.log('Удаляем:', game)
         await collectionApi.deleteGameFromCollection({
           collectionId: this.$route.params.id,
           gameId: game
         })
       }
+      this.loadCollectionInfo()
     },
     async deleteCollection () {
+      this.alert = ''
       const collectionApi = new CollectionApi()
       await collectionApi.deleteCollection({
-        collectionId: this.$route.params.id
+        id: this.$route.params.id
+      }).catch((error) => {
+        this.alert = error.message
       })
+      if (this.alert === '') {
+        this.$router.push('/collection/list')
+      }
     }
   }
 }

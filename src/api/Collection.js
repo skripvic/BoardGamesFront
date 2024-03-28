@@ -42,13 +42,23 @@ export class CollectionApi {
     return this._getResponseData(response)
   }
 
-  async deleteGameFromCollection (gameInfo) {
+  async addGameToCollection (gameAndCollectionId) {
+    await fetch(`${this._baseUrl}/Collection/addGameToCollection`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(gameAndCollectionId)
+    })
+  }
+
+  async deleteGameFromCollection (gameAndCollectionId) {
     await fetch(`${this._baseUrl}/Collection/deleteGameFromCollection`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(gameInfo)
+      body: JSON.stringify(gameAndCollectionId)
     })
   }
 

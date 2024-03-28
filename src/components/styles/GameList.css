@@ -48,4 +48,14 @@
 
 .button-center-create-game {
     text-align: center;
+    margin: 5px 0 0;
+}
+
+.text-extra { 
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.checkbox-delete {
+  float: right;
 }
