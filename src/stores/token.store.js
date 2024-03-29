@@ -1,14 +1,13 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
-export const useUserStore = defineStore('user', {
-  state: () => ({ accessToken: '', refreshToken: '' }),
+export const tokenStore = defineStore('user', {
+  state: () => ({ jwt: '' }),
   getters: {
-    //doubleCount: (state) => state.count * 2,
+    getJwtToken: () => jwt
   },
   actions: {
-    refreshTokens(accessToken, refreshToken) {
-      this.accessToken = accessToken
-      this.refreshToken = refreshToken
-    },
-  },
-});
+    setJwtToken(jwt) {
+      this.jwt = jwt
+    }
+  }
+})

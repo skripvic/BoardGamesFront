@@ -29,6 +29,7 @@
 <script>
 import { UserApi } from '@/api/User'
 import './styles/Auth.css'
+import { auth } from '@/states/auth'
 
 export default {
   data () {
@@ -48,7 +49,7 @@ export default {
         return
       }
       const userApi = new UserApi()
-      this.userToken = userApi.registration({
+      const userToken = userApi.registration({
         email: this.email,
         userName: this.name,
         password: this.password
@@ -57,6 +58,7 @@ export default {
       }).catch((error) => {
         this.alert = error.message
       })
+      auth.login(userToken.jwt)
     }
   }
 }
