@@ -30,7 +30,7 @@ export default {
     async loadGameInfo () {
       try {
         const gameApi = new GameApi()
-        this.gameInfo = await gameApi.getGameInfo(this.$route.params.id)
+        this.gameInfo = await gameApi.getGameInfo(this.$route.params.id, localStorage.getItem('jwt'))
       } catch (error) {
         console.error('Ошибка загрузки игры: ', error)
       }

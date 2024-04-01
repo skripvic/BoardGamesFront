@@ -29,7 +29,6 @@
 <script>
 import { UserApi } from '@/api/User'
 import './styles/Auth.css'
-import { auth } from '@/states/auth'
 
 export default {
   data () {
@@ -42,23 +41,27 @@ export default {
     }
   },
   methods: {
-    register () {
+    async register () {
       this.alert = ''
       if (this.password !== this.passwordVerify) {
         this.alert = 'Passwords must match'
         return
       }
       const userApi = new UserApi()
-      const userToken = userApi.registration({
-        email: this.email,
-        userName: this.name,
-        password: this.password
-      }).then(() => {
+      try {
+        const userToken = await userApi.registration({
+          email: this.email,
+          name: this.name,
+          password: this.password
+        })
+        console.log(userToken.jwt)
+        localStorage.removeItem('jwt')
+        localStorage.setItem('jwt', userToken.jwt)
+        localStorage.setItem('isLoggedIn', 'true')
         this.$router.push('/home')
-      }).catch((error) => {
+      } catch (error) {
         this.alert = error.message
-      })
-      auth.login(userToken.jwt)
+      }
     }
   }
 }

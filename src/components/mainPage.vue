@@ -11,18 +11,15 @@
             Хотя последнее предложение это неправда, потому что я ничего не успеваю.
         </p>
     </div>
-    <div class="all-text">
+    <div class="all-text" v-if="getIsLoggedIn ()">
+        <button class="button-main" @click="$router.push('/game/list')">Список игр</button>
+        <br/>
+        <button class="button-main" @click="$router.push('/user/list')">Список пользователей</button>
+    </div>
+    <div class="all-text" v-else>
         <button class="button-main" @click="$router.push('/auth/register')">Регистрация</button>
         <br/>
         <button class="button-main" @click="$router.push('/auth/signin')">Войти</button>
-        <br/>
-        <button class="button-main" @click="$router.push('/game/list')">Список игр</button>
-        <br/>
-        <button class="button-main" @click="$router.push('/collection/list')">Список коллекций</button>
-        <br/>
-        <button class="button-main" @click="$router.push('/user/list')">Список пользователей</button>
-        <br/>
-        <button class="button-main" @click="$router.push('/user/account')">Личный кабинет</button>
     </div>
 </template>
 
@@ -30,6 +27,10 @@
 import './styles/MainPage.css'
 
 export default {
-
+  methods: {
+    getIsLoggedIn () {
+      return localStorage.getItem('isLoggedIn')
+    }
+  }
 }
 </script>

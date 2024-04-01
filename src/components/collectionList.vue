@@ -1,12 +1,12 @@
 <template>
   <div class="list-collectionList">
     <p class="main-text-collection">Ваши коллекции</p>
-    <p>Тут стоит заглушка, пока только конкретный юзер</p>
-    <ul class = "elements-collectionlist">
+    <ul class = "elements-collectionlist" v-if="collectionList.length > 0">
       <li class = "element-collectionlist" v-for="collection in collectionList" :key="collection.id">
           <router-link class="element-collectionlist-router-link" :to="{ name: 'collection', params: { id: collection.id }}">{{ collection.name }}</router-link>
       </li>
     </ul>
+    <p class="text-extra" v-else>У вас нет ни одной коллекции!</p>
   </div>
   <div class="button-center-collection">
     <button class="button-collection-create" @click="$router.push('/collection/add')">Добавить коллекцию</button>
@@ -30,10 +30,8 @@ export default {
   methods: {
     async loadCollectionList () {
       try {
-        // get curUserId
-        const curUserId = '73ad6c78-cc3c-4c96-36df-08dc4c97c457'
         const collectionApi = new CollectionApi()
-        this.collectionList = await collectionApi.getCollectionList(curUserId)
+        this.collectionList = await collectionApi.getCollectionList(localStorage.getItem('jwt'))
       } catch (error) {
         console.error('Ошибка загрузки списка коллекций: ', error)
       }

@@ -12,60 +12,66 @@ export class CollectionApi {
     return res.json()
   }
 
-  async getCollectionInfo (id) {
+  async getCollectionInfo (id, jwt) {
     const response = await fetch(`${this._baseUrl}/Collection/getCollectionInfo/` + id, {
       method: 'GET',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     })
     return this._getResponseData(response)
   }
 
-  async getCollectionList (userId) {
-    const response = await fetch(`${this._baseUrl}/Collection/getCollectionList/` + userId, {
+  async getCollectionList (jwt) {
+    const response = await fetch(`${this._baseUrl}/Collection/getCollectionList/`, {
       method: 'GET',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     })
     return this._getResponseData(response)
   }
 
-  async getGamesInCollectionList (collectionId) {
+  async getGamesInCollectionList (collectionId, jwt) {
     const response = await fetch(`${this._baseUrl}/Collection/getGamesInCollectionList/` + collectionId, {
       method: 'GET',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     })
     return this._getResponseData(response)
   }
 
-  async addGameToCollection (gameAndCollectionId) {
+  async addGameToCollection (gameAndCollectionId, jwt) {
     await fetch(`${this._baseUrl}/Collection/addGameToCollection`, {
       method: 'POST',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(gameAndCollectionId)
     })
   }
 
-  async deleteGameFromCollection (gameAndCollectionId) {
+  async deleteGameFromCollection (gameAndCollectionId, jwt) {
     await fetch(`${this._baseUrl}/Collection/deleteGameFromCollection`, {
       method: 'DELETE',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(gameAndCollectionId)
     })
   }
 
-  async createCollection (newCollection) {
+  async createCollection (newCollection, jwt) {
     const response = await fetch(`${this._baseUrl}/Collection/createCollection`, {
       method: 'POST',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newCollection)
@@ -73,6 +79,7 @@ export class CollectionApi {
     return this._getResponseData(response)
   }
 
+  // not used
   async updateCollection (updateCollection) {
     const response = await fetch(`${this._baseUrl}/Collection/updateCollection`, {
       method: 'PATCH',
@@ -84,10 +91,11 @@ export class CollectionApi {
     return this._getResponseData(response)
   }
 
-  async deleteCollection (id) {
+  async deleteCollection (id, jwt) {
     await fetch(`${this._baseUrl}/Collection/deleteCollection`, {
       method: 'DELETE',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(id)

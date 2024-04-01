@@ -33,7 +33,7 @@ export default {
       const collection = await collectionApi.createCollection({
         name: this.name,
         userId: userId
-      }
+      }, localStorage.getItem('jwt')
       ).catch((error) => {
         this.alert = error.message
       })

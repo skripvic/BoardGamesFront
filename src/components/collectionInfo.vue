@@ -43,8 +43,8 @@ export default {
     async loadCollectionInfo () {
       try {
         const collectionApi = new CollectionApi()
-        this.collectionInfo = await collectionApi.getCollectionInfo(this.$route.params.id)
-        this.gameList = await collectionApi.getGamesInCollectionList(this.$route.params.id)
+        this.collectionInfo = await collectionApi.getCollectionInfo(this.$route.params.id, localStorage.getItem('jwt'))
+        this.gameList = await collectionApi.getGamesInCollectionList(this.$route.params.id, localStorage.getItem('jwt'))
       } catch (error) {
         console.error('Ошибка загрузки игры: ', error)
       }
@@ -64,7 +64,7 @@ export default {
         await collectionApi.deleteGameFromCollection({
           collectionId: this.$route.params.id,
           gameId: game
-        })
+        }, localStorage.getItem('jwt'))
       }
       this.loadCollectionInfo()
     },
@@ -73,7 +73,7 @@ export default {
       const collectionApi = new CollectionApi()
       await collectionApi.deleteCollection({
         id: this.$route.params.id
-      }).catch((error) => {
+      }, localStorage.getItem('jwt')).catch((error) => {
         this.alert = error.message
       })
       if (this.alert === '') {
