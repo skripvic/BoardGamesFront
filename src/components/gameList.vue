@@ -33,7 +33,7 @@ export default {
     async loadGameList () {
       try {
         const gameApi = new GameApi()
-        this.gameList = await gameApi.getGameList()
+        this.gameList = await gameApi.getGameList(localStorage.getItem('jwt'))
       } catch (error) {
         console.error('Ошибка загрузки списка игр: ', error)
       }

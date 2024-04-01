@@ -79,7 +79,7 @@ export default {
         playTimeMin: this.playTimeMin,
         playTimeMax: this.playTimeMax,
         year: this.year
-      }
+      }, localStorage.getItem('jwt')
       ).catch((error) => {
         this.alert = error.message
       })

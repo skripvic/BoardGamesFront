@@ -12,20 +12,22 @@ export class UserApi {
     return res.json()
   }
 
-  async getUserInfo (id) {
-    const response = await fetch(`${this._baseUrl}/User/getUserInfo/` + id, {
+  async getUserInfo (jwt) {
+    const response = await fetch(`${this._baseUrl}/User/getUserInfo/`, {
       method: 'GET',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     })
     return this._getResponseData(response)
   }
 
-  async getUserList () {
+  async getUserList (jwt) {
     const response = await fetch(`${this._baseUrl}/User/getUserList`, {
       method: 'GET',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     })
@@ -54,17 +56,19 @@ export class UserApi {
     return this._getResponseData(response)
   }
 
-  async refreshToken (tokens) {
-    const response = await fetch(`${this._baseUrl}/User/refreshToken`, {
+  async validateJwt (jsonJwt, jwt) {
+    const response = await fetch(`${this._baseUrl}/User/validateJwt`, {
       method: 'POST',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(tokens)
+      body: JSON.stringify(jsonJwt)
     })
     return this._getResponseData(response)
   }
 
+  // not used
   async updateUser (updateUser) {
     const response = await fetch(`${this._baseUrl}/User/updateUser`, {
       method: 'PATCH',
@@ -76,6 +80,7 @@ export class UserApi {
     return this._getResponseData(response)
   }
 
+  // not used
   async deleteUser (id) {
     const response = await fetch(`${this._baseUrl}/User/deleteUser/` + id, {
       method: 'DELETE',

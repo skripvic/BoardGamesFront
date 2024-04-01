@@ -5,11 +5,39 @@
 
 <script>
 import mainHeader from './components/mainHeader.vue'
+import { UserApi } from './api/User'
+import { router } from './routers'
 
 export default {
   name: 'App',
   components: {
     mainHeader
+  },
+  created () {
+    this.checkJwtToken()
+  },
+  methods: {
+    async checkJwtToken () {
+      if (localStorage.getItem('isLoggedIn')) {
+        if (localStorage.getItem('jwt')) {
+          console.log('Jwt validation')
+          const userApi = new UserApi()
+          const isValid = await userApi.validateJwt({
+            jwt: localStorage.getItem('jwt')
+          }, localStorage.getItem('jwt'))
+          if (!isValid) {
+            localStorage.removeItem('jwt')
+            localStorage.setItem('isLoggedIn', 'false')
+            router.push('/home')
+          }
+        } else {
+          localStorage.removeItem('jwt')
+          localStorage.removeItem('isLoggedIn')
+          localStorage.setItem('isLoggedIn', 'false')
+          router.push('/home')
+        }
+      }
+    }
   }
 }
 </script>

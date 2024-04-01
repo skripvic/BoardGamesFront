@@ -35,7 +35,7 @@ export default {
     async loadGameList () {
       try {
         const gameApi = new GameApi()
-        this.gameList = await gameApi.getGameList()
+        this.gameList = await gameApi.getGameList(localStorage.getItem('jwt'))
       } catch (error) {
         console.error('Ошибка загрузки списка игр: ', error)
       }
@@ -48,7 +48,7 @@ export default {
         await collectionApi.addGameToCollection({
           collectionId: this.$route.params.id,
           gameId: game
-        })
+        }, localStorage.getItem('jwt'))
       }
       this.$router.push('/collection/' + this.$route.params.id)
     }

@@ -12,30 +12,33 @@ export class GameApi {
     return res.json()
   }
 
-  async getGameInfo (id) {
+  async getGameInfo (id, jwt) {
     const response = await fetch(`${this._baseUrl}/Game/getGameInfo/` + id, {
       method: 'GET',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     })
     return this._getResponseData(response)
   }
 
-  async getGameList () {
+  async getGameList (jwt) {
     const response = await fetch(`${this._baseUrl}/Game/getGameList`, {
       method: 'GET',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       }
     })
     return this._getResponseData(response)
   }
 
-  async createGame (newGame) {
+  async createGame (newGame, jwt) {
     const response = await fetch(`${this._baseUrl}/Game/createGame`, {
       method: 'POST',
       headers: {
+        authorization: `bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newGame)
@@ -43,6 +46,7 @@ export class GameApi {
     return this._getResponseData(response)
   }
 
+  // not used
   async updateGame (updateGame) {
     const response = await fetch(`${this._baseUrl}/Game/updateGame`, {
       method: 'PATCH',
@@ -54,6 +58,7 @@ export class GameApi {
     return this._getResponseData(response)
   }
 
+  // not used
   async deleteGame (id) {
     const response = await fetch(`${this._baseUrl}/Game/deleteGame/` + id, {
       method: 'DELETE',

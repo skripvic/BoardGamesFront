@@ -3,7 +3,7 @@
     <p class = "list-userList-title">Список пользователей</p>
     <ul class = "elements-userList">
     <li class = "element-userList" v-for="user in userList" :key="user.id">
-      {{ user.userName }}
+      {{ user.name }}
     </li>
     </ul>
   </div>
@@ -27,7 +27,7 @@ export default {
     async loadUserList () {
       try {
         const userApi = new UserApi()
-        this.userList = await userApi.getUserList()
+        this.userList = await userApi.getUserList(localStorage.getItem('jwt'))
       } catch (error) {
         console.error('Ошибка загрузки списка игр: ', error)
       }
