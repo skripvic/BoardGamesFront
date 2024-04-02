@@ -5,6 +5,8 @@
   <p>Ваш email: {{ userInfo.email }}</p>
   <br/>
   <button class="button-main" @click="$router.push('/collection/list')">Список коллекций</button>
+  <br/>
+  <button class="button-main" @click="signOut()">Выйти из аккаунта</button>
   </div>
 </template>
 
@@ -30,6 +32,10 @@ export default {
       } catch (error) {
         console.error('Ошибка загрузки игры: ', error)
       }
+    },
+    signOut () {
+      localStorage.clear()
+      this.$router.push('/home')
     }
   }
 }

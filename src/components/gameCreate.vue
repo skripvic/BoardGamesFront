@@ -39,6 +39,10 @@
           Год выпуска
           <input class="form_collection-input" v-model="year" />
         </div>
+        <div class="form_collection-text">
+          Изображение (url)
+          <input class="form_collection-input" v-model="photoUrl" />
+        </div>
         <div class="button-center-collection">
           <button class="button-collection-create" type="submit">Добавить</button>
         </div>
@@ -62,6 +66,7 @@ export default {
       playTimeMin: '',
       playTimeMax: '',
       year: '',
+      photoUrl: '',
       alert: ''
     }
   },
@@ -73,6 +78,7 @@ export default {
         alias: this.alias,
         titleRussian: this.titleRussian,
         titleEnglish: this.titleEnglish,
+        photoUrl: this.photoUrl,
         playersMin: this.playersMin,
         playersMax: this.playersMax,
         ageMin: this.ageMin,

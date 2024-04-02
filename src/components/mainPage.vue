@@ -12,6 +12,8 @@
         </p>
     </div>
     <div class="all-text" v-if="getIsLoggedIn ()">
+        <button class="button-main" @click="$router.push('/user/account')">Личный кабинет</button>
+        <br/>
         <button class="button-main" @click="$router.push('/game/list')">Список игр</button>
         <br/>
         <button class="button-main" @click="$router.push('/user/list')">Список пользователей</button>

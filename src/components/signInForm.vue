@@ -31,17 +31,23 @@ export default {
     }
   },
   methods: {
-    signin () {
+    async signin () {
       this.alert = ''
       const userApi = new UserApi()
-      this.userToken = userApi.signIn({
-        email: this.email,
-        password: this.password
-      }).then(() => {
+      try {
+        const userToken = await userApi.signIn({
+          email: this.email,
+          password: this.password
+        })
+        console.log(userToken)
+        console.log(userToken.jwt)
+        localStorage.removeItem('jwt')
+        localStorage.setItem('jwt', userToken.jwt)
+        localStorage.setItem('isLoggedIn', 'true')
         this.$router.push('/home')
-      }).catch((error) => {
+      } catch (error) {
         this.alert = error.message
-      })
+      }
     }
   }
 }

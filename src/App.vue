@@ -16,15 +16,21 @@ export default {
   created () {
     this.checkJwtToken()
   },
+  beforeUnmount () {
+    localStorage.clear()
+    console.log('unmounted')
+  },
   methods: {
     async checkJwtToken () {
       if (localStorage.getItem('isLoggedIn')) {
+        console.log(localStorage.getItem('jwt'))
         if (localStorage.getItem('jwt')) {
           console.log('Jwt validation')
           const userApi = new UserApi()
           const isValid = await userApi.validateJwt({
             jwt: localStorage.getItem('jwt')
           }, localStorage.getItem('jwt'))
+          console.log(isValid)
           if (!isValid) {
             localStorage.removeItem('jwt')
             localStorage.setItem('isLoggedIn', 'false')
