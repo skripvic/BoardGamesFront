@@ -1,6 +1,6 @@
 <template>
   <div class="form-auth__wrapper" id="reg">
-    <div id="alert" v-if="alert">{{ alert }}</div>
+    <div id="alert" class="text-alert" v-if="alert">{{ alert }}</div>
     <p class="main-text">Регистрация</p>
     <form @submit.prevent="register">
       <div class="form__text">
@@ -13,7 +13,7 @@
       </div>
       <div class="form__text">
         Password
-        <input class="form-auth__input" type="password" v-model="password" />
+        <input class="form-auth__input" type="password" v-model="password" @input="validatePassword"/>
       </div>
       <div class="form__text">
         Verify password
@@ -41,6 +41,12 @@ export default {
     }
   },
   methods: {
+    validatePassword () {
+      const regex = /^(?=.*\d).{6,}$/
+      if (!regex.test(this.password)) {
+        this.alert = 'Пароль должен содержать минимум 6 символов и хотя бы одну цифру'
+      }
+    },
     async register () {
       this.alert = ''
       if (this.password !== this.passwordVerify) {
@@ -60,7 +66,9 @@ export default {
         localStorage.setItem('isLoggedIn', 'true')
         this.$router.push('/home')
       } catch (error) {
-        this.alert = error.message
+        const msg = error.message
+        const start = msg.substring(0, msg.indexOf('.'))
+        this.alert = msg.substring(msg.indexOf(':') + 2, msg.indexOf('at ' + start))
       }
     }
   }

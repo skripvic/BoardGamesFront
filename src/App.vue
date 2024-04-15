@@ -21,6 +21,9 @@ export default {
     console.log('unmounted')
   },
   methods: {
+    handleBeforeUnload () {
+      localStorage.clear()
+    },
     async checkJwtToken () {
       if (localStorage.getItem('isLoggedIn')) {
         console.log(localStorage.getItem('jwt'))
@@ -33,6 +36,7 @@ export default {
           console.log(isValid)
           if (!isValid) {
             localStorage.removeItem('jwt')
+            localStorage.removeItem('isLoggedIn')
             localStorage.setItem('isLoggedIn', 'false')
             router.push('/home')
           }

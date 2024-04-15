@@ -21,6 +21,13 @@
     margin-bottom: 4rem;
 }
 
+.text-alert{
+    text-align: center;
+    font-family: Verdana;
+    font-weight: 600;
+    color: #d60000;
+}
+
 .form-auth__input{
     display: flex;
     font-size: 1.3rem;
@@ -37,6 +44,7 @@
 }
 
 .button-auth{
+    cursor: pointer;
     background-color: #d128fc;
     border: none;
     border-radius: 25px;

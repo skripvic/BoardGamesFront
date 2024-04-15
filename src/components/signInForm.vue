@@ -46,7 +46,9 @@ export default {
         localStorage.setItem('isLoggedIn', 'true')
         this.$router.push('/home')
       } catch (error) {
-        this.alert = error.message
+        const msg = error.message
+        const start = msg.substring(0, msg.indexOf('.'))
+        this.alert = msg.substring(msg.indexOf(':') + 2, msg.indexOf('at ' + start))
       }
     }
   }

@@ -29,6 +29,7 @@
 }
 
 .button-collection-create{
+    cursor: pointer;
     background-color: #d128fc;
     border: none;
     border-radius: 25px;
@@ -38,6 +39,13 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.text-alert{
+    text-align: center;
+    font-family: Verdana;
+    font-weight: 600;
+    color: #d60000;
 }
 
 .form_collection-text{

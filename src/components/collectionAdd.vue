@@ -28,14 +28,14 @@ export default {
   methods: {
     async addCollection () {
       this.alert = ''
-      const userId = '73ad6c78-cc3c-4c96-36df-08dc4c97c457'
       const collectionApi = new CollectionApi()
       const collection = await collectionApi.createCollection({
-        name: this.name,
-        userId: userId
+        name: this.name
       }, localStorage.getItem('jwt')
       ).catch((error) => {
-        this.alert = error.message
+        const msg = error.message
+        const start = msg.substring(0, msg.indexOf('.'))
+        this.alert = msg.substring(msg.indexOf(':') + 2, msg.indexOf('at ' + start))
       })
       if (this.alert === '') {
         this.$router.push('/collection/' + collection.id)

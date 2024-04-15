@@ -1,6 +1,6 @@
 <template>
     <div class="form_collection-wrapper " id="reg">
-      <div id="alert" v-if="alert">{{ alert }}</div>
+      <div id="alert" class="text-alert" v-if="alert">{{ alert }}</div>
       <p class="main-text-collection">Добавление игры</p>
       <form @submit.prevent="addCollection">
         <div class="form_collection-text">
@@ -87,7 +87,9 @@ export default {
         year: this.year
       }, localStorage.getItem('jwt')
       ).catch((error) => {
-        this.alert = error.message
+        const msg = error.message
+        const start = msg.substring(0, msg.indexOf('.'))
+        this.alert = msg.substring(msg.indexOf(':') + 2, msg.indexOf('at ' + start))
       })
       if (this.alert === '') {
         this.$router.push('/game/' + game.id)

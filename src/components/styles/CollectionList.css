@@ -32,6 +32,7 @@
   }
 
 .button-collection-create{
+    cursor: pointer;
     background-color: #d128fc;
     border: none;
     border-radius: 25px;

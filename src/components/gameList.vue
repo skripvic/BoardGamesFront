@@ -10,7 +10,8 @@
     </li>
     </ul>
   </div>
-  <div class="button-center-create-game">
+  <div id="alert" class="text-alert" v-if="alert">{{ alert }}</div>
+  <div v-else class="button-center-create-game">
     <button class="button-create-game" @click="$router.push('/game/add')">Добавить игру</button>
   </div>
 </template>
@@ -23,7 +24,8 @@ export default {
   name: 'gameList',
   data () {
     return {
-      gameList: []
+      gameList: [],
+      alert: ''
     }
   },
   async created () {
@@ -35,7 +37,9 @@ export default {
         const gameApi = new GameApi()
         this.gameList = await gameApi.getGameList(localStorage.getItem('jwt'))
       } catch (error) {
-        console.error('Ошибка загрузки списка игр: ', error)
+        const msg = error.message
+        const start = msg.substring(0, msg.indexOf('.'))
+        this.alert = msg.substring(msg.indexOf(':') + 2, msg.indexOf('at ' + start))
       }
     }
   }
