@@ -7,7 +7,13 @@ export class CollectionApi {
 
   _getResponseData (res) {
     if (!res.ok) {
-      return res.text().then(text => { throw new Error(text) })
+      return res.json().then(json => {
+        if (json && json.message) {
+          throw new Error(json.message)
+        } else {
+          throw new Error('Не удалось обработать ответ сервера')
+        }
+      })
     }
     return res.json()
   }

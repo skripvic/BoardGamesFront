@@ -33,9 +33,7 @@ export default {
         name: this.name
       }, localStorage.getItem('jwt')
       ).catch((error) => {
-        const msg = error.message
-        const start = msg.substring(0, msg.indexOf('.'))
-        this.alert = msg.substring(msg.indexOf(':') + 2, msg.indexOf('at ' + start))
+        this.alert = error.message
       })
       if (this.alert === '') {
         this.$router.push('/collection/' + collection.id)

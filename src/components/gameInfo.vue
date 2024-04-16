@@ -32,7 +32,7 @@ export default {
         const gameApi = new GameApi()
         this.gameInfo = await gameApi.getGameInfo(this.$route.params.id, localStorage.getItem('jwt'))
       } catch (error) {
-        console.error('Ошибка загрузки игры: ', error)
+        this.alert = error.message
       }
     }
   }

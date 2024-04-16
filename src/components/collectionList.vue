@@ -33,7 +33,7 @@ export default {
         const collectionApi = new CollectionApi()
         this.collectionList = await collectionApi.getCollectionList(localStorage.getItem('jwt'))
       } catch (error) {
-        console.error('Ошибка загрузки списка коллекций: ', error)
+        this.alert = error.message
       }
     }
   }

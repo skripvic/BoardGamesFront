@@ -40,9 +40,11 @@
           <input class="form_collection-input" v-model="year" />
         </div>
         <div class="form_collection-text">
-          Изображение (url)
-          <input class="form_collection-input" v-model="photoUrl" />
+          Изображение
+          <input class="input-file" type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
         </div>
+        <div v-if="fileName" class="form_collection-text">Выбранный файл: {{ fileName }}</div>
+        <br/>
         <div class="button-center-collection">
           <button class="button-collection-create" type="submit">Добавить</button>
         </div>
@@ -66,11 +68,16 @@ export default {
       playTimeMin: '',
       playTimeMax: '',
       year: '',
-      photoUrl: '',
+      file: '',
+      fileName: '',
       alert: ''
     }
   },
   methods: {
+    handleFileUpload () {
+      this.file = this.$refs.file.files[0]
+      this.fileName = this.file ? this.file.name : ''
+    },
     async addCollection () {
       this.alert = ''
       const gameApi = new GameApi()
@@ -78,7 +85,6 @@ export default {
         alias: this.alias,
         titleRussian: this.titleRussian,
         titleEnglish: this.titleEnglish,
-        photoUrl: this.photoUrl,
         playersMin: this.playersMin,
         playersMax: this.playersMax,
         ageMin: this.ageMin,
@@ -87,10 +93,19 @@ export default {
         year: this.year
       }, localStorage.getItem('jwt')
       ).catch((error) => {
-        const msg = error.message
-        const start = msg.substring(0, msg.indexOf('.'))
-        this.alert = msg.substring(msg.indexOf(':') + 2, msg.indexOf('at ' + start))
+        this.alert = error.message
       })
+      if (this.fileName !== '') {
+        const formData = new FormData()
+        formData.append('file', this.file)
+        await gameApi.uploadFile(
+          this.alias,
+          formData,
+          localStorage.getItem('jwt')
+        ).catch((error) => {
+          this.alert = error.message
+        })
+      }
       if (this.alert === '') {
         this.$router.push('/game/' + game.id)
       }

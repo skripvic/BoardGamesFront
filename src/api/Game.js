@@ -7,7 +7,14 @@ export class GameApi {
 
   _getResponseData (res) {
     if (!res.ok) {
-      return res.text().then(text => { throw new Error(text) })
+      return res.json().then(json => {
+        console.log(json)
+        if (json && json.message) {
+          throw new Error(json.message)
+        } else {
+          throw new Error('Не удалось обработать ответ сервера')
+        }
+      })
     }
     return res.json()
   }
@@ -42,6 +49,18 @@ export class GameApi {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newGame)
+    })
+    return this._getResponseData(response)
+  }
+
+  async uploadFile (alias, file, jwt) {
+    const response = await fetch(`${this._baseUrl}/Game/addGamePicture/` + alias, {
+      method: 'POST',
+      headers: {
+        authorization: `bearer ${jwt}`,
+        'Content-Type': 'application/json'
+      },
+      body: file
     })
     return this._getResponseData(response)
   }

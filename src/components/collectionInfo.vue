@@ -46,7 +46,7 @@ export default {
         this.collectionInfo = await collectionApi.getCollectionInfo(this.$route.params.id, localStorage.getItem('jwt'))
         this.gameList = await collectionApi.getGamesInCollectionList(this.$route.params.id, localStorage.getItem('jwt'))
       } catch (error) {
-        console.error('Ошибка загрузки игры: ', error)
+        this.alert = error.message
       }
     },
     toggleDeletingMode () {

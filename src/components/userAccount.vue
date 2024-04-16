@@ -30,7 +30,7 @@ export default {
         const userApi = new UserApi()
         this.userInfo = await userApi.getUserInfo(localStorage.getItem('jwt'))
       } catch (error) {
-        console.error('Ошибка загрузки игры: ', error)
+        this.alert = error.message
       }
     },
     signOut () {
