@@ -53,14 +53,14 @@ export class GameApi {
     return this._getResponseData(response)
   }
 
-  async uploadFile (alias, file, jwt) {
-    const response = await fetch(`${this._baseUrl}/Game/addGamePicture/` + alias, {
+  async uploadFile (data, jwt) {
+    const response = await fetch(`${this._baseUrl}/Game/addGamePicture`, {
       method: 'POST',
       headers: {
         authorization: `bearer ${jwt}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>'
       },
-      body: file
+      body: data
     })
     return this._getResponseData(response)
   }

@@ -75,8 +75,12 @@ export default {
   },
   methods: {
     handleFileUpload () {
-      this.file = this.$refs.file.files[0]
-      this.fileName = this.file ? this.file.name : ''
+      try {
+        this.file = this.$refs.file.files[0]
+        this.fileName = this.file ? this.file.name : ''
+      } catch (error) {
+        console.error('Error handling file upload:', error)
+      }
     },
     async addCollection () {
       this.alert = ''
@@ -97,9 +101,9 @@ export default {
       })
       if (this.fileName !== '') {
         const formData = new FormData()
-        formData.append('file', this.file)
+        formData.append('alias', this.alias)
+        formData.append('gamePicture', this.file)
         await gameApi.uploadFile(
-          this.alias,
           formData,
           localStorage.getItem('jwt')
         ).catch((error) => {
